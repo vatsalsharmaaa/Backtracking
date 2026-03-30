@@ -8,6 +8,8 @@ public:
 
         while(j<n){
             sum+= nums[j];
+
+            //trying to shrink the window
             while(sum>=target){
                 minl=min(minl,j-i+1);
 
