@@ -1,13 +1,6 @@
 class Solution {
 public:
-    // int sum(vector<int>&nums){
-    //     int n=nums.size();
-    //     int sum=0;
-    //     for(int i=0;i<n;i++){
-    //         sum+=nums[i];
-    //     }
-    //     return sum;
-    // }
+    
     vector<vector<int>>res;
     void solve(int idx,int target,vector<int>&nums,vector<int>&curr){
         if(target==0){
