@@ -2,7 +2,7 @@ class Solution {
 public:
 int n;
 
-int dp[500001];
+int dp[50001];
 
     int getNext(vector<vector<int>>&arr,int start,int jobend){
         int ans=n;
