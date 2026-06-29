@@ -14,8 +14,9 @@ public:
 
     bool solve(TreeNode* n1 , TreeNode* n2){
         if(n1==nullptr && n2==nullptr) return true;
-        if(!n1 && n2!=nullptr) return false;
-        if(n1!=nullptr && !n2) return false;
+        // if(!n1 && n2!=nullptr) return false;
+        // if(n1!=nullptr && !n2) return false;
+        if(!n1 || !n2) return false;
 
         if(n1->val != n2->val) return false;
         bool lefty= solve(n1->left, n2->right);
