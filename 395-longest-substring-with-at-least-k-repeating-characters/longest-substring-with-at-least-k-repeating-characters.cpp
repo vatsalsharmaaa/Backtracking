@@ -15,10 +15,12 @@ int n;
                 int left=solve(s.substr(0,i),k);
                 int right= solve(s.substr(i+1),k);
 
-                return max(left,right);
+                return max(left,right);   //max left right return hote chale jayenge upar
             }
         }
-            return s.size();
+
+
+        return s.size();//means given string is already valid 
 
     }
     int longestSubstring(string s, int k) {
