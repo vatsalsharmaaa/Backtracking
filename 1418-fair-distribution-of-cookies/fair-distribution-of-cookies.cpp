@@ -9,8 +9,9 @@ public:
             return;
         }
 
-        int cookie= cookies[idx];
         for(int i=0;i<k;i++){
+            
+        int cookie= cookies[idx];
             child[i]+=cookie;
             solve(idx+1,res,cookies,k,n,child);
             child[i]-=cookie;
