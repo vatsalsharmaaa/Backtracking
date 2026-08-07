@@ -1,30 +1,24 @@
 class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
-        unordered_map<int, int> mp;
+        int n=nums.size();
+        unordered_map<int,int>mp;
+        mp[0]=1;
+        int sum=0;
+        int res=0;
+        for(auto x:nums){
+            sum+=x;
+            int remainder= sum%k;
 
-        int prefixSum = 0;
-        int count = 0;
 
-        // Empty prefix has sum 0 and remainder 0
-        mp[0] = 1;
-
-        for (int num : nums) {
-            prefixSum += num;
-
-            int remainder = prefixSum % k;
-
-            // C++ can produce negative remainders
-            if (remainder < 0) {
-                remainder += k;
+            if(remainder<0){
+                remainder+=k;
             }
-
-            // Every previous same remainder creates one valid subarray
-            count += mp[remainder];
-
+            if(mp[remainder]>0){
+                res+=mp[remainder];
+            }
             mp[remainder]++;
         }
-
-        return count;
+        return res;
     }
 };
