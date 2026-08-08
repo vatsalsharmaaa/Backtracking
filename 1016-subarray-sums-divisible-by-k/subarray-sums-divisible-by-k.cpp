@@ -14,6 +14,7 @@ public:
             if(remainder<0){
                 remainder+=k;
             }
+            
             if(mp[remainder]>0){
                 res+=mp[remainder];
             }
