@@ -8,12 +8,12 @@ public:
         vector<int>freq(128); 
 
         for(char ch: s){ 
-            freq[ch]++;             // changed
+            freq[ch]++;             
         } 
 
-        for(int i=0;i<128;i++){     // changed
-            if(freq[i]>0){          // changed
-                pq.push({freq[i],char(i)});  // changed
+        for(int i=0;i<128;i++){     
+            if(freq[i]>0){          
+                pq.push({freq[i],char(i)});  
             }
         } 
 
