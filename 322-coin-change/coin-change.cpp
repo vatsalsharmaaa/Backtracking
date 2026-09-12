@@ -7,7 +7,7 @@ int func(int amount,vector<int>&coins){
         int ans=INT_MAX;
         for(auto coin : coins){
             if(amount - coin>=0){
-                ans= min(ans+0LL,func(amount - coin , coins)+1LL);
+                ans= min(ans+0ll,func(amount - coin , coins)+1ll);
 
             } 
         }
