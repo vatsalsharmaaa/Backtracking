@@ -1,69 +1,59 @@
 class Solution {
 public:
-    vector<vector<int>> dirs = {{0,1}, {1,0}, {-1,0}, {0,-1}};
-    typedef pair<int,int> p;
-
+    vector<vector<int>> dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
     int n, m;
-
+    typedef pair<int, int> p;
     int orangesRotting(vector<vector<int>>& grid) {
-        int fresh = 0;
-
         n = grid.size();
         m = grid[0].size();
 
+        int fresh = 0;
         queue<p> q;
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (grid[i][j] == 2) {
+                if (grid[i][j] == 1) {
+                    fresh++;
+                } else if (grid[i][j] == 2) {
                     q.push({i, j});
                 }
-
-                if (grid[i][j] == 1)
-                    fresh++;
             }
         }
-
-        if (fresh == 0)
+        if (fresh == 0) {
             return 0;
-
+        }
         int time = 0;
-
         while (!q.empty()) {
             int size = q.size();
-            bool rotten = false;
-
+            int temp = 0;
             while (size--) {
-                auto it = q.front();
+                int i = q.front().first;
+                int j = q.front().second;
                 q.pop();
 
-                int i = it.first;
-                int j = it.second;
-
                 for (auto dir : dirs) {
+
                     int ni = i + dir[0];
                     int nj = j + dir[1];
-
-                    if (ni >= 0 && nj >= 0 &&
-                        ni < n && nj < m &&
+                    if (ni >= 0 && ni < n && nj >= 0 && nj <m &&
                         grid[ni][nj] == 1) {
-
+                        temp++;
                         grid[ni][nj] = 2;
-                        fresh--;
-                        rotten = true;
-
                         q.push({ni, nj});
                     }
                 }
+                
             }
-
-            if (rotten)
-                time++;
+            if (temp > 0)
+                    time++;
         }
-
-        if (fresh > 0)
-            return -1;
-
-        return time;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 1) {
+                    time = 0;
+                    break;
+                }
+            }
+        }
+        return (time == 0) ? -1 : time;
     }
 };
