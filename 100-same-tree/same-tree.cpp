@@ -31,7 +31,7 @@ public:
         
         if(p==NULL || q==NULL)return false;
         if(p->val != q->val)return false;
-        // if(p->val==q->val) return true;
+        
 
         return isSameTree(p->left ,q->left) && isSameTree(p->right ,q->right);
     }
