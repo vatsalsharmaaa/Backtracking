@@ -1,56 +1,51 @@
 class Solution {
 public:
-
-    vector<int> solveps(vector<int>& heights){
+    vector<int>solve_nse(vector<int>& heights,int n){
+        vector<int>res(n);
         stack<int>st;
-        st.push(-1);
-        vector<int>ans(heights.size());
-
-        for(int i=0;i<heights.size();i++){
-            while(st.top()!=-1 &&heights[st.top()]>=heights[i]){
+        
+        for(int i=n-1;i>=0;i--){
+            while(!st.empty()&&heights[st.top()]>=heights[i]){
                 st.pop();
-            }  
-            ans[i]=st.top();
-            st.push(i);  
-       }
-       return ans;
+            }
+            if(st.empty()) res[i]=n;
+            else res[i]=st.top();
+            st.push(i);
+
+        }
+        return res;
 
     }
-     vector<int> solvens(vector<int>& heights){
-         stack<int>st;
-        st.push(-1);
-        vector<int>ans(heights.size());
-        int n=heights.size();
-
-        for(int i=n-1;i>=0;i--){
-            while(st.top()!=-1 && heights[st.top()]>=heights[i]){
+     vector<int>solve_pse(vector<int>& heights,int n){
+        vector<int>res(n);
+        res[0]=-1;
+        stack<int>st;
+        st.push(0);
+        for(int i=1;i<n;i++){
+            while(!st.empty() && heights[st.top()]>=heights[i]){
                 st.pop();
-            }  
-            if(st.top()==-1){
-                ans[i]=n;
             }
-            else
-               ans[i]=st.top();
-
-            st.push(i);  
-       }
-       return ans;
+            if(st.empty()) res[i]=-1;
+            else res[i]=st.top();
+            st.push(i);
+        }
+        return res;
     }
     int largestRectangleArea(vector<int>& heights) {
         int n= heights.size();
-        vector<int>ps(n);
-        vector<int>ns(n);
-        ps=solveps(heights);
-        ns=solvens(heights);
-        
-        int maxarea=INT_MIN;
+        vector<int>nse(n);
+        vector<int>pse(n);
+        nse=solve_nse(heights,n);
+        pse=solve_pse(heights,n);
 
+        int res=INT_MIN;
         for(int i=0;i<n;i++){
+             int area=0;
             int l=heights[i];
-            int b= ns[i]-ps[i]-1;
-            int area= l*b;
-            maxarea=max(maxarea,area);
+            int b= nse[i] - pse[i] - 1;
+            area= l*b;
+            res=max(res,area); 
         }
-        return maxarea;
+        return res;
     }
 };
